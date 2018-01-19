@@ -2,9 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 const Otsikko = (props) => {
+    const kurssi = props.kurssi
     return (
         <div>
-            <h1>{props.kurssi}</h1>
+            <h1>{kurssi.nimi}</h1>
         </div>
     )
 }
@@ -46,28 +47,30 @@ const Yhteensa = (props) => {
 }
 
 const App = () => {
-    const kurssi = 'Half Stack -sovelluskehitys'
-    const osat = [
-        {
+    const kurssi = {
+        nimi: 'Half Stack -sovelluskehitys',
+        osat: [
+          {
             nimi: 'Reactin perusteet',
             tehtavia: 10
-        },
-        {
+          },
+          {
             nimi: 'Tiedonvälitys propseilla',
             tehtavia: 7
-        },
-        {
+          },
+          {
             nimi: 'Komponenttien tila',
             tehtavia: 14
-        }
-    ]
+          }
+        ]
+      }
 
 
     return (
         <div>
             <Otsikko kurssi={kurssi} />
-            <Sisalto osat={osat} />
-            <Yhteensa osat={osat} />
+            <Sisalto osat={kurssi.osat} />
+            <Yhteensa osat={kurssi.osat} />
         </div>
     )
 }
