@@ -10,9 +10,16 @@ const Otsikko = (props) => {
 }
 
 const Sisalto = (props) => {
+    const osat = props.osat
+    const m1 = osat.map((osa) => osa.nimi + ' ' + osa.tehtavia)
+
+    const[osa1, osa2, osa3] = m1
     return (
         <div>
-            <Osa osa={props.osa} tehtavia={props.tehtavia} />
+            {/* <Osa osa={props.osa} tehtavia={props.tehtavia} /> */}
+            <Osa osa={osa1}/>
+            <Osa osa={osa2}/>
+            <Osa osa={osa3}/>
         </div>
     )
 }
@@ -20,41 +27,47 @@ const Sisalto = (props) => {
 const Osa = (props) => {
     return (
         <div>
-            <p>{props.osa} {props.tehtavia}</p>
+            <p>{props.osa}</p>
         </div>
     )
 }
 
 const Yhteensa = (props) => {
+    let summa = 0
+    const[osa1, osa2, osa3] = props.osat
+    summa += osa1.tehtavia
+    summa += osa2.tehtavia
+    summa += osa3.tehtavia
     return (
         <div>
-            <p>Yhteensä {props.yhteensa} tehtävää</p>
+            <p>Yhteensä {summa} tehtävää</p>
         </div>
     )
 }
 
 const App = () => {
     const kurssi = 'Half Stack -sovelluskehitys'
-    const osa1 = {
-        nimi: 'Reactin perusteet',
-        tehtavia: 10
-    }
-    const osa2 = {
-        nimi: 'Tiedonvälitys propseilla',
-        tehtavia: 7
-    }
-    const osa3 = {
-        nimi: 'Komponenttien tila',
-        tehtavia: 14
-    }
+    const osat = [
+        {
+            nimi: 'Reactin perusteet',
+            tehtavia: 10
+        },
+        {
+            nimi: 'Tiedonvälitys propseilla',
+            tehtavia: 7
+        },
+        {
+            nimi: 'Komponenttien tila',
+            tehtavia: 14
+        }
+    ]
+
 
     return (
         <div>
             <Otsikko kurssi={kurssi} />
-            <Sisalto osa={osa1.nimi} tehtavia={osa1.tehtavia} />
-            <Sisalto osa={osa2.nimi} tehtavia={osa2.tehtavia} />
-            <Sisalto osa={osa3.nimi} tehtavia={osa3.tehtavia} />
-            <Yhteensa yhteensa={osa1.tehtavia + osa2.tehtavia + osa3.tehtavia} />
+            <Sisalto osat={osat} />
+            <Yhteensa osat={osat} />
         </div>
     )
 }
