@@ -39,6 +39,9 @@ const Yhteensa = (props) => {
     summa += osa1.tehtavia
     summa += osa2.tehtavia
     summa += osa3.tehtavia
+    // props.osat.forEach((osa) => {
+    //     summa += osa.tehtavia
+    // })
     return (
         <div>
             <p>Yhteensä {summa} tehtävää</p>
