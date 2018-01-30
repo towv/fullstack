@@ -1,0 +1,88 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "content": "HTML on helppoa",
+      "date": "2017-12-10T17:30:31.098Z",
+      "important": true
+    },
+    {
+      "id": 2,
+      "content": "Selain pystyy suorittamaan vain javascriptiä",
+      "date": "2017-12-10T18:39:34.091Z",
+      "important": false
+    },
+    {
+      "id": 3,
+      "content": "HTTP-protokollan tärkeimmät metodit ovat GET ja POST",
+      "date": "2017-12-10T19:20:14.298Z",
+      "important": true
+    },
+    {
+      "content": "käsijarru ei toimi",
+      "date": "2018-01-29T17:24:37.186Z",
+      "important": false,
+      "id": 4
+    },
+    {
+      "content": "käsijarru ei toimi",
+      "date": "2018-01-29T17:24:41.648Z",
+      "important": false,
+      "id": 5
+    },
+    {
+      "content": "käsijarru ei toimi",
+      "date": "2018-01-29T17:24:42.710Z",
+      "important": false,
+      "id": 6
+    },
+    {
+      "content": "käsijarru ei toimi",
+      "date": "2018-01-29T17:24:42.953Z",
+      "important": false,
+      "id": 7
+    },
+    {
+      "content": "käsijarru ei toimi",
+      "date": "2018-01-29T17:24:43.161Z",
+      "important": false,
+      "id": 8
+    },
+    {
+      "content": "käsijarru ei toimi",
+      "date": "2018-01-29T17:24:43.355Z",
+      "important": true,
+      "id": 9
+    },
+    {
+      "content": "käsijarru ei toimi",
+      "date": "2018-01-29T17:24:43.554Z",
+      "important": false,
+      "id": 10
+    },
+    {
+      "content": "jumeja",
+      "date": "2018-01-29T17:25:46.111Z",
+      "important": true,
+      "id": 11
+    },
+    {
+      "content": "",
+      "date": "2018-01-29T17:30:38.586Z",
+      "important": false,
+      "id": 12
+    },
+    {
+      "content": "solow",
+      "date": "2018-01-29T17:39:13.591Z",
+      "important": false,
+      "id": 13
+    },
+    {
+      "content": "sbadiii",
+      "date": "2018-01-29T17:39:38.860Z",
+      "important": true,
+      "id": 14
+    }
+  ]
+}

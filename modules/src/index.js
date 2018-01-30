@@ -1,24 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import App from './App'
+import './index.css'
 
-const Hello = (props) => {
-    return (
-      <div>
-        <p>Hello {props.name}, you are {props.age} years old</p>
-      </div>
-    )
-  }
-  
-  const App = () => {
-    const nimi = 'Martti Oskari'
-    const ika = 18
-    return (
-      <div>
-        <h1>Greetings</h1>
-        <Hello name="Arto" age={26+10}/>
-        <Hello name={nimi} age={ika}/>
-      </div>
-    )
-  }
-  
-  ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+)
