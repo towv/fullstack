@@ -55,7 +55,7 @@ class App extends React.Component {
       title: "",
       author: "",
       url: "",
-      error: ""
+      error: null
     }
   }
 
@@ -127,6 +127,17 @@ class App extends React.Component {
     }, 2000)
   }
 
+  deleteBlog = (blog) => {
+    this.setState({
+      blogs: this.state.blogs.filter(b => b._id !== blog._id),
+      error: `blog '${blog.title}' deleted`
+    })
+
+    setTimeout(() => {
+      this.setState({ error: null })
+    }, 2000)
+  }
+
   handleBlogChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
   }
@@ -165,7 +176,7 @@ class App extends React.Component {
     )
 
     return (
-      <div>
+      <div className="app">
         <Notification message={this.state.error} />
 
         {this.state.user === null ?
@@ -183,7 +194,7 @@ class App extends React.Component {
             </Togglable>
             <h2>blogs</h2>
             {this.state.blogs.map(blog =>
-              <Blog key={blog._id} blog={blog} />
+              <Blog key={blog._id} blog={blog} delete={this.deleteBlog.bind(this)} user={this.state.user} />
             )}
           </div>
         }

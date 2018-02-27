@@ -1,6 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class Togglable extends React.Component {
+    static propTypes = {
+        buttonLabel: PropTypes.string.isRequired
+    }
     constructor(props) {
         super(props)
         this.state = {
@@ -12,6 +16,23 @@ export default class Togglable extends React.Component {
         this.setState({ visible: !this.state.visible })
     }
 
+    // render() {
+    //     const hideWhenVisible = { display: this.state.visible ? 'none' : '' }
+    //     const showWhenVisible = { display: this.state.visible ? '' : 'none' }
+
+    //     return (
+    //         <div>
+    //             <div style={hideWhenVisible}>
+    //                 <button onClick={this.toggleVisibility}>{this.props.buttonLabel}</button>
+    //             </div>
+    //             <div style={showWhenVisible}>
+    //                 {this.props.children}
+    //                 <button onClick={this.toggleVisibility}>cancel</button>
+    //             </div>
+    //         </div>
+    //     )
+    // }
+
     render() {
         const hideWhenVisible = { display: this.state.visible ? 'none' : '' }
         const showWhenVisible = { display: this.state.visible ? '' : 'none' }
@@ -21,7 +42,7 @@ export default class Togglable extends React.Component {
                 <div style={hideWhenVisible}>
                     <button onClick={this.toggleVisibility}>{this.props.buttonLabel}</button>
                 </div>
-                <div style={showWhenVisible}>
+                <div style={showWhenVisible} className="togglableContent">
                     {this.props.children}
                     <button onClick={this.toggleVisibility}>cancel</button>
                 </div>
