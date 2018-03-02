@@ -7,12 +7,16 @@ class AnecdoteForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const content = e.target.anecdote.value
-    this.props.store.dispatch(anecdoteCreation(content))
-    this.props.store.dispatch(notificationAdded(content))
+
+    console.log(anecdoteCreation)
+    console.log(this.props.anecdoteCreation)
+
+    this.props.anecdoteCreation(content)
+    this.props.notificationAdded(content)
 
     e.target.anecdote.value = ''
     setTimeout(() => {
-      this.props.store.dispatch(notificationReset())
+      this.props.notificationReset()
     }, 5000)
   }
   render() {
@@ -28,13 +32,7 @@ class AnecdoteForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    anecdotes: state.notes,
-    filter: state.filter
-  }
-}
-
-const ConnectedAnecdoteForm = connect(mapStateToProps)(AnecdoteForm)
-
-export default ConnectedAnecdoteForm
+export default connect(
+  null,
+  { anecdoteCreation, notificationAdded, notificationReset }
+)(AnecdoteForm)

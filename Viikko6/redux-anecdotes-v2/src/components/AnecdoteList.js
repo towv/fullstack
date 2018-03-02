@@ -15,15 +15,12 @@ class AnecdoteList extends React.Component {
   }
 
   render() {
-    const anecdotes = this.props.anecdotes
-    const anecdotesToShow = this.props.filter === '' ? 
-    anecdotes : anecdotes.filter(a => a.content.includes(this.props.filter))
 
     return (
       <div>
         <h2>Anecdotes</h2>
-        <Filter store={this.props.store} />
-        {anecdotesToShow.sort((a, b) => b.votes - a.votes).map(anecdote =>
+        <Filter />
+        {this.props.anecdotesToShow.map(anecdote =>
           <div key={anecdote.id}>
             <div>
               {anecdote.content}
@@ -42,11 +39,18 @@ class AnecdoteList extends React.Component {
   }
 }
 
+const anecdotesToShow = (anecdotes, filter) => {
+  const unsorted = filter === '' ?
+    anecdotes : anecdotes.filter(a => a.content.includes(filter))
+  return unsorted.sort((a, b) => b.votes - a.votes)
+  }
+
 const mapStateToProps = (state) => {
   return {
     anecdotes: state.anecdotes,
     filter: state.filter,
-    notification: state.notification
+    notification: state.notification,
+    anecdotesToShow: anecdotesToShow(state.anecdotes, state.filter)
   }
 }
 
@@ -57,7 +61,7 @@ const mapDispatchToProps = {
 }
 
 const ConnectedAnecdotelist = connect(
-  mapStateToProps, 
+  mapStateToProps,
   mapDispatchToProps)(AnecdoteList)
 
 export default ConnectedAnecdotelist
