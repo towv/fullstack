@@ -1,43 +1,30 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import SimpleBlog from './SimpleBlog'
+import SipleBlog from './SimpleBlog'
 
-describe('<SimpleBlog />', () => {
-    it('renders content', () => {
-        const blog = {
-            title: 'Komponenttitestaus tapahtuu jestillä ja enzymellä',
-            author: 'Matti',
-            likes: 2
-        }
+describe.only('<SimpleBlog />', () => {
+  const blog = {
+    title: 'Go To Statement Considered Harmful',
+    author: 'Edsger W. Dijkstra',
+    likes: 3
+  }
 
-        const blogComponent = shallow(<SimpleBlog blog={blog} />)
-        const titleauthorDiv = blogComponent.find('.titleauthor')
-        expect(titleauthorDiv.text()).toContain(blog.title)
-        expect(titleauthorDiv.text()).toContain(blog.author)
+  it('renders title, author and likes', () => {
+    const blogComponent = shallow(<SipleBlog blog={blog} />)
 
-        const likes = blogComponent.find('.likes')
-        expect(likes.text()).toContain(blog.likes)
-    })
-    it('clicking the button twice calls event handler twice', () => {
-        const blog = {
-            title: 'Komponenttitestaus tapahtuu jestillä ja enzymellä',
-            author: 'Matti',
-            likes: 2
-        }
+    expect(blogComponent.text()).toContain(blog.title)
+    expect(blogComponent.text()).toContain(blog.author)
+    expect(blogComponent.text()).toContain(String(blog.likes))
+  })
 
-        const mockHandler = jest.fn()
+  it('calls onClick handler', () => {
+    const onClick = jest.fn()
+    const blogComponent = shallow(<SipleBlog blog={blog} onClick={onClick} />)
 
-        const blogComponent = shallow(
-            <SimpleBlog
-                blog={blog}
-                onClick={mockHandler}
-            />
-        )
+    const button = blogComponent.find('button')
+    button.simulate('click')
+    button.simulate('click')
 
-        const button = blogComponent.find('button')
-        button.simulate('click')
-        button.simulate('click')
-
-        expect(mockHandler.mock.calls.length).toBe(2)
-    })
+    expect(onClick.mock.calls.length).toBe(2)
+  })  
 })

@@ -3,47 +3,30 @@ import { shallow } from 'enzyme'
 import Blog from './Blog'
 
 describe.only('<Blog />', () => {
-    it('before clicking name the details are not displayed', () => {
+  let blogComponent
 
-        const blog = {
-            title: 'Komponenttitestaus tapahtuu jestillä ja enzymellä',
-            author: 'Matti',
-            likes: 2
-        }
-        const user = {
-            name: "Ville"
-        }
-        const del = () => {
-            return null
-        }
-        const blogComponent = shallow(<Blog blog={blog} user={user} delete={del} />)
+  beforeEach(() => {
+    const blog = {
+      title: 'Go To Statement Considered Harmful',
+      author: 'Edsger W. Dijkstra',
+      url: '',
+      likes: 3
+    }
+    blogComponent = shallow(
+      <Blog blog={blog} />
+    )
+  })
 
-        const nameDiv = blogComponent.find('.nameDiv')
-        expect(nameDiv.text()).toContain(blog.title)
-        expect(nameDiv.text()).toContain(blog.author)
-        expect(nameDiv.text()).not.toContain(blog.likes)
-    })
-    it('after clicking name the details are displayed', () => {
+  it('at start the details are not displayed', () => {
+    const contentDiv = blogComponent.find('.content')
+    expect(contentDiv.getElement().props.style.display).toEqual('none')
+  })
 
-        const blog = {
-            title: 'Komponenttitestaus tapahtuu jestillä ja enzymellä',
-            author: 'Matti',
-            likes: 2
-        }
-        const user = {
-            name: "Ville"
-        }
-        const del = () => {
-            return null
-        }
-        const blogComponent = shallow(<Blog blog={blog} user={user} delete={del} />)
+  it('after clicking name the details are displayed', () => {
+    const nameDiv = blogComponent.find('.name')
+    nameDiv.simulate('click')
 
-        // haetaan klikattava osa komponentista
-        const nameDiv = blogComponent.find('.nameDiv')
-        nameDiv.simulate('click')
-
-        // haetaan tarkastettava, eli detaljit sisältävä osa komponentista
-        const contentDiv = blogComponent.find('.contentDiv')
-        expect(contentDiv.text()).toContain(blog.likes)
-    })
+    const contentDiv = blogComponent.find('.content')
+    expect(contentDiv.getElement().props.style.display).toEqual('')
+  })  
 })
